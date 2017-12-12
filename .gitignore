@@ -1,5 +1,5 @@
 venv
-.pyc
-.avm
+*.pyc
+*.avm
 .idea
 __pycache__

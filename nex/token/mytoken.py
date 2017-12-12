@@ -5,15 +5,15 @@ class Token():
     Basic settings for an NEP5 Token and crowdsale
     """
 
-    name = 'My Project Name'
+    name = 'NEX Template'
 
-    symbol = 'ICO'
+    symbol = 'NXT'
 
     decimals = 8
 
     # This is the script hash of the address for the owner of the token
     # This can be found in ``neo-python`` with the walet open, use ``wallet`` command
-    owner = b'\xe0\xa9\xce\x8c\xb0j\x8c\xb7-J,\x91+n0\\\xbb\x04\xe5\xb7'
+    owner = b'\xaf\x12\xa8h{\x14\x94\x8b\xc4\xa0\x08\x12\x8aU\nci[\xc1\xa5'
 
     in_circulation_key = b'in_circulation'
 
@@ -32,10 +32,10 @@ class Token():
     max_exchange_limited_round = 500 * 40 * 100000000
 
     # when to start the crowdsale
-    block_sale_start = 81850
+    block_sale_start = 875000
 
     # when to end the initial limited round
-    limited_round_end = 81850 + 10
+    limited_round_end = 875000 + 10000
 
 
 
