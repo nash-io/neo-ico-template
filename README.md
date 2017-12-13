@@ -11,7 +11,7 @@
 #### Considerations
 
 An article describing this template is available here:
-https://medium.com/p/4ca7ba19fc8b/edit
+https://medium.com/neon-exchange/nex-ico-template-4ca7ba19fc8b
 
 #### Requirements
 
