@@ -5,17 +5,18 @@
     
 </p>
 <h3 align="center">Neo ICO Template</h3>
-<p align="center">A Template for NEP5 Compliant Tokens on the NEO platform</p>
+<p align="center">A template for NEP5 Compliant Tokens on the NEO platform</p>
 <hr/>
 
 #### Considerations
 
 An article describing this template is available here:
+
 https://medium.com/neon-exchange/nex-ico-template-4ca7ba19fc8b
 
 #### Requirements
 
-Usage requires Python 3.4 or 3.5
+Usage requires Python 3.4 or 3.5.
 
 
 #### Installation
@@ -23,43 +24,43 @@ Usage requires Python 3.4 or 3.5
 Clone the repository and navigate into the project directory. 
 Make a Python 3 virtual environment and activate it via
 
-    python3 -m venv venv
-    source venv/bin/activate
+```shell
+python3 -m venv venv
+source venv/bin/activate
+```
 
-or to explicitly install Python 3.5,
-
+or to explicitly install Python 3.5 via
 
     virtualenv -p /usr/local/bin/python3.5 venv
     source venv/bin/activate
 
 Then install the requirements via
 
-
-    pip install -r requirements.txt
-
-
+```shell
+pip install -r requirements.txt
+```
 
 #### Compilation
 
-
 The template may be compiled as follows
 
-    from boa.compiler import Compiler
+```python
+from boa.compiler import Compiler
 
-    Compiler.load_and_save('ico_template.py')
+Compiler.load_and_save('ico_template.py')
+```
 
 
 This will compile your template to `ico_template.avm`
 
 
-
-
 #### Testnet Deployed Details
 
-This Template is currently deployed on testnet with the contract script hash `0b6c1f919e95fe61c17a7612aebfaf4fda3a2214` for testing purposes.
+For testing purposes, this template is deployed on testnet with the following contract script hash:
 
+`0b6c1f919e95fe61c17a7612aebfaf4fda3a2214`
 
-```
+```json
 {
     "code": {
         "parameters": "0710",
@@ -78,6 +79,4 @@ This Template is currently deployed on testnet with the contract script hash `0b
     },
     "email": "tom@neonexchange.org"
 }
-
-
 ```
