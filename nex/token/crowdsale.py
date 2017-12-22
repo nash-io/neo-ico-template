@@ -146,13 +146,17 @@ class Crowdsale():
         # registered with the contract for KYC regulations
         # this is not required for operation of the contract
 
+#        status = self.get_kyc_status(attachments.sender_addr, storage)
         if not self.get_kyc_status(attachments.sender_addr, storage):
             return False
 
-        print("Will check can exchange") # @TODO [Compiler FIX] removing this breaks the execution of this method
+#        print("Will check can exchange") # @TODO [Compiler FIX] removing this print statement breaks the execution of this method in v 0.2.0 and below
+#                                           @TODO Fixed in version 0.2.1
+
 
         # caluclate the amount requested
         amount_requested = attachments.neo_attached * token.tokens_per_neo / 100000000
+
         # this would work for accepting gas
         # amount_requested = attachments.gas_attached * token.tokens_per_gas / 100000000
 
@@ -194,16 +198,17 @@ class Crowdsale():
         new_amount = current_in_circulation + amount
 
         if new_amount > token.total_supply:
-            # print("amount greater than total supply")
+            print("amount greater than total supply")
             return False
 
+        print("trying to calculate height????")
         if height < token.block_sale_start:
-            # print("sale not begun yet")
+            print("sale not begun yet")
             return False
 
         # if we are in free round, any amount
         if height > token.limited_round_end:
-            # print("Free for all, accept as much as possible")
+            print("Free for all, accept as much as possible")
             return True
 
 
