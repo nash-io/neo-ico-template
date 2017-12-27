@@ -6,7 +6,7 @@ from nex.token.mytoken import Token
 from nex.common.storage import StorageAPI
 from nex.common.txio import Attachments,get_asset_attachments
 
-OnTransfer = RegisterAction('transfer', 'to', 'from', 'amount')
+OnTransfer = RegisterAction('transfer', 'from', 'to', 'amount')
 OnRefund = RegisterAction('refund', 'to', 'amount')
 
 OnInvalidKYCAddress = RegisterAction('invalid_registration','address')
