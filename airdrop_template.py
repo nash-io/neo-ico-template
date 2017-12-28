@@ -60,7 +60,7 @@ def Main(operation, args):
         if operation != None:
 
             # take a list of address scripthashes and assign tokens to them
-            # this operation should always be first checked in order to 
+            # this operation should always be the first checked in order to 
             # conserve GAS usage, allowing more addresses to be airdropped 
             # tokens to per invocation of the contract
 
