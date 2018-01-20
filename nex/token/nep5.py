@@ -121,7 +121,7 @@ class NEP5Handler():
             return False
 
         to_len = len(t_to)
-        
+
         if to_len != 20:
             return False
 
