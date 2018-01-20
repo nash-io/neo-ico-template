@@ -120,12 +120,10 @@ class NEP5Handler():
         if amount <= 0:
             return False
 
-        to_len = len(t_to)
-
-        if to_len != 20:
-            return False
-
         available_key = concat(t_from, t_to)
+
+        if len(available_key) != 40:
+            return False
 
         available_to_to_addr = storage.get(available_key)
 
