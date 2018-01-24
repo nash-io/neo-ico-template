@@ -82,6 +82,9 @@ class NEP5Handler():
         if amount <= 0:
             return False
 
+        if len(t_to) != 20:
+            return False
+
         if CheckWitness(t_from):
 
             if t_from == t_to:
