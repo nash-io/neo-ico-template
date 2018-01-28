@@ -40,6 +40,8 @@ class NEP5Handler():
         elif operation == 'balanceOf':
             if len(args) == 1:
                 account = args[0]
+                if len(account) != 20:
+                    return 0
                 return storage.get(account)
             return arg_error
 
