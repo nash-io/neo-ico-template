@@ -81,7 +81,7 @@ class Crowdsale():
         storage = StorageAPI()
 
         # this looks up whether the exchange can proceed
-        can_exchange = self.can_exchange(token, attachments, storage)
+        can_exchange = self.can_exchange(token, attachments, storage, False)
 
         if not can_exchange:
             print("Cannot exchange value")
@@ -116,7 +116,7 @@ class Crowdsale():
         return True
 
 
-    def can_exchange(self, token:Token, attachments:Attachments, storage:StorageAPI) -> bool:
+    def can_exchange(self, token:Token, attachments:Attachments, storage:StorageAPI, verify_only: bool) -> bool:
         """
         Determines if the contract invocation meets all requirements for the ICO exchange
         of neo or gas into NEP5 Tokens.
@@ -160,7 +160,7 @@ class Crowdsale():
         # this would work for accepting gas
         # amount_requested = attachments.gas_attached * token.tokens_per_gas / 100000000
 
-        can_exchange = self.calculate_can_exchange(token, amount_requested, attachments.sender_addr)
+        can_exchange = self.calculate_can_exchange(token, amount_requested, attachments.sender_addr, verify_only)
 
         return can_exchange
 
@@ -179,7 +179,7 @@ class Crowdsale():
         return storage.get(kyc_storage_key)
 
 
-    def calculate_can_exchange(self, token: Token, amount: int, address):
+    def calculate_can_exchange(self, token: Token, amount: int, address, verify_only: bool):
         """
         Perform custom token exchange calculations here.
 
@@ -223,7 +223,12 @@ class Crowdsale():
 
             # if not, then save the exchange for limited round
             if not has_exchanged:
-                storage.put(r1key, True)
+                # note that this method can be invoked during the Verification trigger, so we have the
+                # verify_only param to avoid the Storage.Put during the read-only Verification trigger.
+                # this works around a "method Neo.Storage.Put not found in ->" error in InteropService.py
+                # since Verification is read-only and thus uses a StateReader, not a StateMachine
+                if not verify_only:
+                    storage.put(r1key, True)
                 return True
 
             print("already exchanged in limited round")

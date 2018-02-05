@@ -53,7 +53,7 @@ def Main(operation, args):
 
         crowdsale = Crowdsale()
 
-        return crowdsale.can_exchange(token, attachments, storage)
+        return crowdsale.can_exchange(token, attachments, storage, True)
 
 
     elif trigger == Application:
