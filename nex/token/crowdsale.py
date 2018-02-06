@@ -89,7 +89,11 @@ class Crowdsale():
             # block before the total amount is reached.  An amount of TX will get through
             # the verification phase because the total amount cannot be updated during that phase
             # because of this, there should be a process in place to manually refund tokens
-            OnRefund(attachments.sender_addr, attachments.neo_attached)
+            if attachments.neo_attached > 0:
+                OnRefund(attachments.sender_addr, attachments.neo_attached)
+            # if you want to exchange gas instead of neo, use this
+            #if attachments.gas_attached > 0:
+            #    OnRefund(attachments.sender_addr, attachments.gas_attached)
             return False
 
 
