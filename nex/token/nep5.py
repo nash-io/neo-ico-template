@@ -128,6 +128,10 @@ class NEP5Handler():
         if len(available_key) != 40:
             return False
 
+        if not CheckWitness(t_to):
+            print("to address is not the tx sender")
+            return False
+
         available_to_to_addr = storage.get(available_key)
 
         if available_to_to_addr < amount:
