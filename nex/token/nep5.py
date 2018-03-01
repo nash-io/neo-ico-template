@@ -52,11 +52,12 @@ class NEP5Handler():
             return arg_error
 
         elif operation == 'transferFrom':
-            if len(args) == 3:
-                t_from = args[0]
-                t_to = args[1]
-                t_amount = args[2]
-                return self.do_transfer_from(storage, t_from, t_to, t_amount)
+            if len(args) == 4:
+                t_originator = args[0]
+                t_from = args[1]
+                t_to = args[2]
+                t_amount = args[3]
+                return self.do_transfer_from(storage, t_originator, t_from, t_to, t_amount)
             return arg_error
 
         elif operation == 'approve':
@@ -118,51 +119,57 @@ class NEP5Handler():
 
         return False
 
-    def do_transfer_from(self, storage: StorageAPI, t_from, t_to, amount):
+    def do_transfer_from(self, storage: StorageAPI, t_originator, t_from, t_to, amount):
 
         if amount <= 0:
             return False
 
-        available_key = concat(t_from, t_to)
+        if CheckWitness(t_originator):
 
-        if len(available_key) != 40:
-            return False
+            available_key = concat(t_from, t_originator)
 
-        available_to_to_addr = storage.get(available_key)
+            if len(available_key) != 40:
+                return False
 
-        if available_to_to_addr < amount:
-            print("Insufficient funds approved")
-            return False
+            available_to_to_addr = storage.get(available_key)
 
-        from_balance = storage.get(t_from)
+            if available_to_to_addr < amount:
+                print("Insufficient funds approved")
+                return False
 
-        if from_balance < amount:
-            print("Insufficient tokens in from balance")
-            return False
+            from_balance = storage.get(t_from)
 
-        to_balance = storage.get(t_to)
+            if from_balance < amount:
+                print("Insufficient tokens in from balance")
+                return False
 
-        new_from_balance = from_balance - amount
+            to_balance = storage.get(t_to)
 
-        new_to_balance = to_balance + amount
+            new_from_balance = from_balance - amount
+            
+            new_to_balance = to_balance + amount
 
-        storage.put(t_to, new_to_balance)
-        storage.put(t_from, new_from_balance)
+            storage.put(t_to, new_to_balance)
+            storage.put(t_from, new_from_balance)
 
-        print("transfer complete")
+            print("transfer complete")
 
-        new_allowance = available_to_to_addr - amount
+            new_allowance = available_to_to_addr - amount
+            
+            if new_allowance == 0:
+                print("removing all balance")
+                storage.delete(available_key)
+            else:
+                print("updating allowance to new allowance")
+                storage.put(available_key, new_allowance)
 
-        if new_allowance == 0:
-            print("removing all balance")
-            storage.delete(available_key)
+            OnTransfer(t_from, t_to, amount)
+
+            return True
         else:
-            print("updating allowance to new allowance")
-            storage.put(available_key, new_allowance)
+            print("originator address is not the tx sender")
 
-        OnTransfer(t_from, t_to, amount)
-
-        return True
+        return False
 
     def do_approve(self, storage: StorageAPI, t_owner, t_spender, amount):
 
