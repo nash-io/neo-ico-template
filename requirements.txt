@@ -1,2 +1,2 @@
 bytecode==0.5
-neo-boa==0.3.4
+neo-boa==0.3.7
