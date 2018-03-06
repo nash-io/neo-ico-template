@@ -32,8 +32,6 @@ class TestContract(BoaFixtureTest):
         except Exception as e:
             print("couldn't remove debug storage %s " % e)
 
-
-
     @classmethod
     def setUpClass(cls):
         super(TestContract, cls).setUpClass()
