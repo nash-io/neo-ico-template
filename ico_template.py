@@ -47,8 +47,7 @@ def Main(operation, args):
         # Otherwise, we need to lookup the assets and determine
         # If attachments of assets is ok
         attachments = get_asset_attachments()
-        return False
-#        return can_exchange(ctx,attachments, True)
+        return can_exchange(ctx, attachments, True)
 
     elif trigger == Application():
 
