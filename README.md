@@ -16,7 +16,7 @@ https://medium.com/neon-exchange/nex-ico-template-4ca7ba19fc8b
 
 #### Requirements
 
-Usage requires Python 3.4 or 3.5.
+Usage requires Python 3.6+
 
 
 #### Installation
@@ -29,9 +29,9 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-or to explicitly install Python 3.5 via
+or to explicitly install Python 3.6 via
 
-    virtualenv -p /usr/local/bin/python3.5 venv
+    virtualenv -p /usr/local/bin/python3.6 venv
     source venv/bin/activate
 
 Then install the requirements via
@@ -53,6 +53,22 @@ Compiler.load_and_save('ico_template.py')
 
 This will compile your template to `ico_template.avm`
 
+
+
+#### Running tests
+
+1. Install `requirements_test.txt`
+
+``` 
+pip install -r requirements_test.txt
+
+```
+
+2. Run tests
+
+``` 
+python -m unittest discover tests
+```
 
 #### Testnet Deployed Details
 
@@ -80,3 +96,4 @@ For testing purposes, this template is deployed on testnet with the following co
     "email": "tom@neonexchange.org"
 }
 ```
+
