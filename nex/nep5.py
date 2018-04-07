@@ -57,15 +57,15 @@ def do_transfer(ctx, t_from, t_to, amount):
 
     if CheckWitness(t_from):
 
-        if t_from == t_to:
-            print("transfer to self!")
-            return True
-
         from_val = Get(ctx, t_from)
 
         if from_val < amount:
             print("insufficient funds")
             return False
+
+        if t_from == t_to:
+            print("transfer to self!")
+            return True
 
         if from_val == amount:
             Delete(ctx, t_from)
