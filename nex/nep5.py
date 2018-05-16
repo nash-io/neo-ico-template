@@ -138,6 +138,9 @@ def do_transfer_from(ctx, t_from, t_to, amount):
 
 def do_approve(ctx, t_owner, t_spender, amount):
 
+    if len(t_spender) != 20:
+        return False
+
     if not CheckWitness(t_owner):
         return False
 
