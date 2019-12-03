@@ -19,7 +19,7 @@ cryptography==2.1.4
 curtsies==0.3.0
 cycler==0.10.0
 docopt==0.6.2
-ecdsa==0.13
+ecdsa==0.13.3
 Events==0.3
 gevent==1.2.2
 greenlet==0.4.13
