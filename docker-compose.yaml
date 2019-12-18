@@ -1,0 +1,13 @@
+version: '3'
+services:
+  template:
+    container_name: neo-ico-template
+    image: python:3.6
+    entrypoint: ["sh", "sh/start.sh"]
+    working_dir: /home/neo-ico-template
+    volumes:
+      - .:/home/neo-ico-template
+      - pip_cache:/usr/local/lib/python3.6/site-packages
+
+volumes:
+  pip_cache:
