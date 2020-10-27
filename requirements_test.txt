@@ -15,7 +15,7 @@ colorlog==3.1.2
 constantly==15.1.0
 coverage==4.5.1
 coveralls==1.2.0
-cryptography==2.1.4
+cryptography==3.2
 curtsies==0.3.0
 cycler==0.10.0
 docopt==0.6.2
