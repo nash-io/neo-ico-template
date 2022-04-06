@@ -57,7 +57,7 @@ requests==2.18.4
 scrypt==0.8.6
 six==1.11.0
 tqdm==4.19.5
-Twisted==17.9.0
+Twisted==21.2.0
 typing==3.6.4
 urllib3==1.22
 virtualenv==15.1.0
